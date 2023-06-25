@@ -8,7 +8,9 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
-      forbidNonWhitelisted: true
+      // Esto bloquea información adicional que no necesita el backend
+      // Util en una RESTful Api. GraphQL se encarga de hacer lo mismo sin necesidad de la linea de abajo
+      // forbidNonWhitelisted: true
     })
   )
 

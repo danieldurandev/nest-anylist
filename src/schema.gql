@@ -2,16 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type List {
+  name: String!
+  user: User!
+}
+
 type User {
   id: ID!
   fullName: String!
   email: String!
-  password: String!
   roles: [String!]!
   isActive: Boolean!
   lastUpdateBy: User
-  items: [Item!]!
   itemCount: Int!
+  items(offset: Int = 0, limit: Int = 10, search: String): Item!
+  lists(offset: Int = 0, limit: Int = 10, search: String): [List!]!
+  listCount: Int!
 }
 
 type Item {
@@ -30,8 +36,9 @@ type Query {
   revalidate: AuthResponse!
   users(roles: [ValidRoles!] = []): [User!]!
   user(id: ID!): User!
-  items: [Item!]!
+  items(offset: Int = 0, limit: Int = 10, search: String): [Item!]!
   item(id: ID!): Item!
+  list(id: ID!): List!
 }
 
 """Roles de usuarios"""
@@ -49,6 +56,12 @@ type Mutation {
   createItem(createItemInput: CreateItemInput!): Item!
   updateItem(updateItemInput: UpdateItemInput!): Item!
   removeItem(id: String!): Item!
+  createList(createListInput: CreateListInput!): List!
+  updateList(updateListInput: UpdateListInput!): List!
+  removeList(id: ID!): List!
+
+  """Ejecuta la contrucción de la base de datos"""
+  executeSeed: Boolean!
 }
 
 input SignupInput {
@@ -80,4 +93,13 @@ input UpdateItemInput {
   name: String
   quantityUnits: String
   id: ID!
+}
+
+input CreateListInput {
+  name: String!
+}
+
+input UpdateListInput {
+  name: String
+  id: String!
 }
