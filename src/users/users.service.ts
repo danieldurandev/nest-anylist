@@ -5,7 +5,7 @@ import { User } from './entities/user.entity';
 import { SignupInput } from 'src/auth/dtos/inputs/signup.input';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import * as bcrypt from "bcrypt"
+import * as bcrypt from "bcryptjs"
 import { validRoles } from 'src/auth/enums/valid-roles.enum';
 
 @Injectable()

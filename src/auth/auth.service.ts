@@ -4,7 +4,7 @@ import { AuthResponse } from './types/auth-response.type';
 import { UsersService } from 'src/users/users.service';
 import { LoginInput } from './dtos/inputs/login.input';
 
-import * as bcrypt from "bcrypt"
+import * as bcrypt from "bcryptjs"
 import { JwtService } from '@nestjs/jwt';
 import { User } from 'src/users/entities/user.entity';
 
